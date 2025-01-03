@@ -1,4 +1,0 @@
-./src/com/UTF8FileReader.java
-./src/com/list/FastByteArrayList.java
-./src/com/filereader/Input.java
-./src/com/filereader/InputFile.java
