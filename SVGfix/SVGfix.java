@@ -69,7 +69,7 @@ public class SVGfix {
            tree.put(name, value);
        } 
     }
-    static private String lass = "lass=\"";
+
     static private String fixPath(String path) {
        String name;
        String value; 
