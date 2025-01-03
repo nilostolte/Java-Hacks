@@ -2,9 +2,23 @@
 
 This project allows to read UTF-8 encoded UNICODE files in Java. It implements an infinite buffer file reader where one can recover the text word by word, which is converted from UTF-8, skipping blanks. The blanks can be recovered since they are all counted (feature used in the test program). By skipping blanks the reader is able to identify the start and the end of the words because they are different than blank. The fact that the text is encoded is totally transparent to the reader. The test program reads an UTF-8 testing file and prints it over the console. A batch file is provided to help running the jar. Another batch file to build the source files and generate the jar using ava CLI in console window is also given. 
 
+## Opening a Command Prompt
+
+Due to incompatibilities between different versions of Java, it's better to build the jar from the source files. In order to build the jar in a Windows platform one should open a normal command window (**NOT a Powershell**) and set its path to the directory containing the contents of this repository. One should not use a Powershell (Powershell causes a bug with the flag `-Dfile.encoding=UTF-8`), but just a normal command prompt. To open a normal command prompt just press these two keys simultaneously:
+
+<img src="https://github.com/user-attachments/assets/a064017c-c8ac-4878-a230-4796dc5d23fb" width=300><br>
+
+And then type `cmd` in the input field at the window that appears (shown below), followed by a click at the `OK` button:
+
+<img src="https://github.com/user-attachments/assets/018be955-9947-4b4b-8a84-057620f48073" width=300><br>
+
 ## Building the JAR
 
-Due to incompatibilities between different versions of Java, it's better to build the jar from the source files. In order to build the jar in a Windows platform one should open a command window and set it to the directory containing the contents of this repertory. One should not use a Powershell (Powershell causes a bug with the flag `-Dfile.encoding=UTF-8`), but just a normal Command Prompt. In this window just type:
+The procedure above opens a command tool. In this window, set the path to the directory where the repository was copied:
+
+<img src="https://github.com/user-attachments/assets/808af049-7774-41ec-aab0-8453e1636068" width=600><br>
+
+As shown in the image above, build the jar by typing in this window:
 
 ```
 build
