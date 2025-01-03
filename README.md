@@ -22,7 +22,7 @@ class to define the color.
 
 This program is a simple hack and it may copy other commands when multiple classes with the same name are
 used but only the last reference will be taken into account for each path. Complex configurations, like 
-CSS classes separated by commas sharing the same attribute (color or another attricute) will cause an error.
+CSS classes separated by commas sharing the same attribute (color or another attribute) will cause an error.
 
 When an error is detected while using the `TreeMap`, the program says which class was not found and dumps all 
 the keys of the tree for debugging purposes.
