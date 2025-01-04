@@ -11,7 +11,7 @@ public class SVGfix {
     static private String msgNoFix = "File \"input.svg\" doesn't have colors in CSS format - no output generated";
     static private TreeMap<String,String> tree = new TreeMap<String,String>();
 
-	public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException {
        Pattern path = Pattern.compile("<path");
        FileInputStream fileIn = new FileInputStream("input.svg");
        Scanner in = new Scanner(fileIn);
@@ -23,7 +23,7 @@ public class SVGfix {
            in.skip(path);
            System.out.println(fixPath(in.next()));
        } while (in.hasNext());
-	}
+    }
 
     static private String parseSymbols(Scanner in) {
        Pattern defs = Pattern.compile("<defs>");
@@ -40,7 +40,7 @@ public class SVGfix {
           in.skip(style);
           in.skip(Pattern.compile("</defs>"));
        }
-	   catch (java.util.NoSuchElementException e) {
+       catch (java.util.NoSuchElementException e) {
           System.out.println(msgNoFix);
           System.exit(1);
        }
@@ -75,11 +75,11 @@ public class SVGfix {
        String value; 
        int i = 0;
        int j, k;
-       while( path.charAt(i) == ' ') i++;      
+       while ( path.charAt(i) == ' ' ) i++;      
        if ( (path.charAt(i) == 'c') && (path.charAt(i+5) == '=') ) {
-          for (j= i + 8; path.charAt(j) != '"'; j++ );
+          for (j = i + 8; path.charAt(j) != '"'; j++ );
           name = path.substring(i+7, j);
-		  if (!tree.containsKey(name)) {
+          if (!tree.containsKey(name)) {
               System.out.println(
                   "Class named \"" + name + "\" doesn't exit in <styles>"
               );
