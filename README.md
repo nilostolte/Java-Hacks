@@ -5,6 +5,42 @@ via CLI with a `build.bat` for Windows machines (in other machines just copy and
 individual commands in this batch file or convert it the another shell script) to obtain a 
 `jar` application that functions as a tool or example.
 
+## SVGspecular - Phong shading for SVG radial gradients
+
+[This](SVGspecular) is a single class program that creates an SVG file containing a square 
+with a non-linear radial gradient based on Phong shading function for specular highlights 
+(function cosⁿ(angle)). The program produces a complete standalone SVG file.
+
+The SVG has a number of step colors N determined by the user. Other parameters, such as the
+exponent of Phong's function (The "n" of cosⁿ(angle)), can also be supplied by the user following
+the program name as usually done in CLI mode.
+
+The program takes the initial color C0 (which is generally white in the center of a the radial
+gradient) and the last color C1 (which is any color to be continued outside the radial gradient),
+and linearly interpolates the color C for each stop color based on an unidimensional parametric
+line equation, where the value of the parameter is given by the result of aplying the angle
+to the function cosⁿ(angle). In other words, the peseudocode for this procedure is shown below:
+
+``` Java
+   t = cosⁿ(angle)
+   C = C1 + (C0 - C1) * t
+```
+
+The angle is given by incrementing the initial angle of 0° by the angular step value "inca" at each iteration. 
+Likewise, the stop color offset "x" is given by incrementing the initial value of 0 by the linear step "inc."
+In other words, the pseudocode for the overall procedure described so far is shown below:
+
+``` Java
+   inca = 90°/N
+   inc = 1./N
+   x = angle = 0.
+   for (i = 2; i < N; i++ ) {
+      x += inc
+      t = cosⁿ(angle += inca)
+      C = C1 + (C0 - C1) * t
+   }
+```
+
 ## SVGfix - TreeMap Example
 
 [This program](SVGfix) copies the color information from CSS classes and plugs them into the
