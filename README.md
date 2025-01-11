@@ -7,28 +7,31 @@ individual commands in this batch file or convert it the another shell script) t
 
 ## SVGspecular - Phong shading for SVG radial gradients
 
-[This](SVGspecular) is a single class program that creates an SVG file containing a square 
+[This](SVGspecular) is a single class program that creates an **SVG** file containing a square 
 with a non-linear radial gradient based on Phong shading function for specular highlights 
-(function cosⁿ(angle)). The program produces a complete standalone SVG file.
+(function **cosⁿ(angle)**). The program produces a complete standalone **SVG** file.
 
-The SVG has a number of step colors N determined by the user. Other parameters, such as the
-exponent of Phong's function (The "n" of cosⁿ(angle)), can also be supplied by the user following
-the program name as usually done in CLI mode.
+The **SVG** has a number of step colors **N** determined by the user. Other parameters, such as the
+exponent of Phong's function (The **n** of **cosⁿ(angle)**, not **N**), can also be supplied by the 
+user following the program name as usually done in **x** mode.
 
-The program takes the initial color C0 (which is generally white in the center of a the radial
-gradient) and the last color C1 (which is any color to be continued outside the radial gradient),
-and linearly interpolates the color C for each stop color based on an unidimensional parametric
-line equation, where the value of the parameter is given by the result of aplying the angle
-to the function cosⁿ(angle). In other words, the peseudocode for this procedure is shown below:
+### Overall algorithm
+
+The program takes the initial color **C0** (which is generally white in the center of a the radial
+gradient) and the last color **C1** (which is any color to be continued outside the radial gradient),
+and linearly interpolates the color **C** for each stop color based on an unidimensional parametric
+line equation, where the value of the parameter **t** is given by the result of applying the **angle**
+to the function **cosⁿ(angle)**. In other words, the pseudocode for this procedure is shown below:
 
 ``` Java
    t = cosⁿ(angle)
    C = C1 + (C0 - C1) * t
 ```
 
-The angle is given by incrementing the initial angle of 0° by the angular step value "inca" at each iteration. 
-Likewise, the stop color offset "x" is given by incrementing the initial value of 0 by the linear step "inc."
-In other words, the pseudocode for the overall procedure described so far is shown below:
+The angle is given by incrementing the initial angle of **0°** by the angular step value **inca** at 
+each iteration. Likewise, the stop color offset **x** is given by incrementing the initial value of
+**0** by the linear step **inc**. In other words, the pseudocode for the overall procedure described 
+so far is shown below:
 
 ``` Java
    inca = 90°/N
@@ -38,8 +41,22 @@ In other words, the pseudocode for the overall procedure described so far is sho
       x += inc
       t = cosⁿ(angle += inca)
       C = C1 + (C0 - C1) * t
+      ...
    }
 ```
+
+Notice that since the control of the loop is totally independent from the incremented variables **angle**
+and **x**, starting the loop with **`i = 2`** will actually only discard the first and last stop colors 
+**C0** and **C1**, since they are already known in advance and don't need to be calculated.
+
+Also notice that the individual color components need to be processed independently, not together as shown 
+in the pseudocode. For simplicity and easier comprehension, the colors are dealt here as a sort of 3D (or 
+4D, including the alpha channel) vector representation. Indeed, colors can be represented as vectors where each 
+color component corresponds to a different dimension. In the real code, though, the color components are 
+dealt independently.
+
+Also notice that the names of the variables used in pseudocode are given to enhance the algorithm comprehension
+and they don't always correspond to the actual variable name in the [code](SVGspecular/SVGspecular.java).
 
 ## SVGfix - TreeMap Example
 
