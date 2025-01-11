@@ -1,6 +1,6 @@
 # SVGspecular - Phong shading for SVG radial gradients
 
-[This](SVGspecular) is a single class program that creates an **SVG** file containing a square  with a non-linear radial gradient based on Phong shading function for specular highlights (function $cos^n(angle)$). The program produces a complete standalone **SVG** file.
+[This](SVGspecular.java) is a single class program that creates an **SVG** file containing a square  with a non-linear radial gradient based on Phong shading function for specular highlights (function $cos^n(angle)$). The program produces a complete standalone **SVG** file.
 
 The **SVG** has a number of step colors $N$ determined by the user. Other parameters, such as the
 exponent of Phong's function (The $n$ of $cos^n(angle)$, not $N$), can also be supplied by the user following the program name as usually done in **x** mode.
