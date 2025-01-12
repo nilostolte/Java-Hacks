@@ -1,27 +1,29 @@
 # SVGspecular - Phong shading for SVG radial gradients
 
-[This](SVGspecular.java) is a single class program that creates an **SVG** file containing a square with a non-linear radial gradient based on Phong shading function for specular highlights (function $cos^n(angle)$). The program produces a complete standalone **SVG** file.
+[This](SVGspecular.java) is a single class program that creates an **SVG** file containing a square with a non-linear radial gradient based on Phong shading function for specular highlights (function $cos^n(angle)$​). The program produces a complete standalone **SVG** file.
 
-The **SVG** has a number of step colors $N$ determined by the user. Other parameters, such as the
-exponent of Phong's function (The $n$ of $cos^n(angle)$, not $N$), can also be supplied by the user following the program name as usually done in **x** mode.
+The **SVG** has a number of stop colors $N$ determined by the user. Other parameters, such as the
+exponent of Phong's function (the $n$ of $cos^n(angle)$, not $N$), can also be supplied by the user following the program name as usually done in **CLI** mode.
 
 ### Overall algorithm
 
-The program takes the initial color $\vec{C_0}$ (which is generally white in the center of a the radial
-gradient) and the last color $\vec{C_1}$ (which is any color to be continued outside the radial gradient),
-and linearly interpolates the color $\vec{C}$ for each stop color based on a multidimensional parametric line equation, where the value of the parameter $t$ is given by the result of applying an $angle$ $\alpha$ to the function $cos^n(angle)$. In other words, this procedure is shown below:
+The program takes the **initial color** $\vec{C_0}$ (which is generally white in the center of a the radial
+gradient) and the **last color** $\vec{C_1}$ (which is any color to be continued outside the radial gradient),
+and linearly interpolates the color $\vec{C}$ for each **stop color** based on a multidimensional parametric line equation, where the value of the parameter $t$ is given by the result of applying an $angle$ $\alpha$ to the function $cos^n(angle)$. In other words, this procedure is shown below:
 
 ```math
   \begin{aligned}
      &t = cos^n(\alpha)\\
-     &\vec{C} = \vec{C_1}+ (\vec{C_0} - \vec{C_1}) \cdot t 
+     &\vec{C} = \vec{C_1}+ (\vec{C_0} - \vec{C_1}) \cdot t\\
+     &\\
   \end{aligned}
  ```
-<br>
 
 Notice that the individual color components need to be processed independently. For simplicity and easier comprehension, the colors are dealt here as a sort of 3D (or 4D, including the alpha channel) vector representation. Indeed, colors can be represented as vectors where each color component corresponds to a different dimension.
 
-Let's start with $\alpha=0^\circ$, and increment $\alpha$ with an angular step $\epsilon_\alpha$ at each iteration. Likewise, let's initialize the stop color offset $x$ with $x = 0$, and increment $x$ with a linear step $\epsilon$ at each iteration. In other words, the pseudocode for the overall procedure described so far is shown below:
+One can now devise the complete algorithm. A gradient in **SVG** also needs the **offset** of each stop color from the center of the gradient (considered the gradient's origin), and we call $x$ the variable dealing with this offset in the algorithm. 
+
+Let's start with an $\alpha=0^\circ$, and then increment $\alpha$ with an angular step $\epsilon_\alpha$ at each iteration. Likewise, let's start the first stop color at $x = 0$, the center of the gradient, and increment $x$ with a linear step $\epsilon$ at each iteration. In other words, the pseudocode for the overall procedure described so far is shown below:
 
 ```math
  \begin{aligned}
