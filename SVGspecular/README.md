@@ -23,7 +23,7 @@ Notice that the individual color components need to be processed independently. 
 
 ### Complete algorithm
 
-One can now devise the complete algorithm. A gradient in **SVG** also needs the **offset** of each stop color from the center of the gradient (considered the gradient's origin), and we call $x$, where $x \in [0, 1]$, the variable dealing with this offset in the algorithm. 
+One can now devise the complete algorithm. A gradient in **SVG** also needs the **offset** of each stop color from the center of the gradient (considered the gradient's origin), and we call $x$, where $x \in [0, 1]$, the variable representing this offset in the algorithm. 
 
 Let's start with an $\alpha=0^\circ$, and then increment $\alpha$ with an angular step $\epsilon_\alpha$ at each iteration. Likewise, let's start the first stop color at $x = 0$, the center of the gradient, and increment $x$ with a linear step $\epsilon$ at each iteration. In other words, the pseudocode for the overall procedure described so far is shown below:
 
