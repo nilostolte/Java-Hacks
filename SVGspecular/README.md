@@ -21,6 +21,8 @@ and linearly interpolates the color $\vec{C}$ for each **stop color** based on a
 
 Notice that the individual color components need to be processed independently. For simplicity and easier comprehension, the colors are dealt here as a sort of 3D (or 4D, including the alpha channel) vector representation. Indeed, colors can be represented as vectors where each color component corresponds to a different dimension.
 
+### Complete algorithm
+
 One can now devise the complete algorithm. A gradient in **SVG** also needs the **offset** of each stop color from the center of the gradient (considered the gradient's origin), and we call $x$ the variable dealing with this offset in the algorithm. 
 
 Let's start with an $\alpha=0^\circ$, and then increment $\alpha$ with an angular step $\epsilon_\alpha$ at each iteration. Likewise, let's start the first stop color at $x = 0$, the center of the gradient, and increment $x$ with a linear step $\epsilon$ at each iteration. In other words, the pseudocode for the overall procedure described so far is shown below:
@@ -35,15 +37,14 @@ Let's start with an $\alpha=0^\circ$, and then increment $\alpha$ with an angula
     &\quad \alpha = \alpha + \epsilon_\alpha\\
     &\quad t = cos^n(\alpha)\\
     &\quad \vec{C} = \vec{C_1}+ (\vec{C_0} - \vec{C_1}) \cdot t\\
-    &\quad \vdots\\
     &\}
   \end{aligned}
 ```
 <br>
 
-Notice that since the control of the loop is totally independent from the incremented variables $\alpha$ and $x$, starting the loop with $i\,\text{=}\,2$ will actually only discard the first and last stop colors $\vec{C_0}$ and $\vec{C_1}$, since they are already known in advance and don't need to be calculated.
+Notice that since the control of the loop is totally independent from the incremented variables $\alpha$ and $x$, starting the loop with $i\ \text{=}\ 2$ will have the effect of only discarding the first and last stop colors $\vec{C_0}$ and $\vec{C_1}$. This is done because these are the input colors, and since they are obviously already known in advance they don't need to be calculated.
 
-Also notice that the names of the variables used in the pseudocode are given to enhance the algorithm comprehension and they don't correspond to the actual variable name in the [code](SVGspecular.java).
+Also of note, the names of the variables used in the pseudocode are given to enhance the algorithm comprehension and they don't correspond to the actual variable names in the actual [code](SVGspecular.java). Evidently, the algorithm above omits many details in order to simplify the logic, to show only the essential information, and to enhance comprehension. To further contrast the algorithm from the actual [code](SVGspecular.java), the notation doesn't follow any specific language syntax either, but just borrows some similar structures from most languages.
 
 ### Phong shading - Specular Highlight
 
