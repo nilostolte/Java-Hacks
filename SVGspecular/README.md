@@ -23,7 +23,7 @@ Notice that the individual color components need to be processed independently. 
 
 ### Complete algorithm
 
-One can now devise the complete algorithm. A gradient in **SVG** also needs the **offset** of each stop color from the center of the gradient (considered the gradient's origin), and we call $x$, where $x \in [0, 1]$, the variable representing this offset in the algorithm. 
+One can now devise the complete algorithm. A gradient in **SVG** also needs the **offset** of each stop color from the center of the gradient (considered the gradient's origin). In the algorithm it's called $x$, a variable representing the offset with values ranging from $0$ to $1$. 
 
 Let's start with an $\alpha=0^\circ$, and then increment $\alpha$ with an angular step $\epsilon_\alpha$ at each iteration. Likewise, let's start the first stop color at $x = 0$, the center of the gradient, and increment $x$ with a linear step $\epsilon$ at each iteration. In other words, the pseudocode for the overall procedure described so far is shown below:
 
@@ -50,12 +50,33 @@ Also of note, the names of the variables used in the pseudocode are given to enh
 
 ### Phong shading - Specular Highlight
 
-Phong shading is a realistic shading algorithm for polygons in 3D scenes that calculates the color of each pixel by making the $intensity$ of light in each pixel in the polygon proportional to the dot product between the unitary vector pointing to a point light source (or the direction of a directional light source) and the polygon unitary normal vector. Since both are unitary vectors, the result of the dot product is the cosine of the angle between both vectors. Since a cosine is
-a scalar, the $intensity$ is a scalar as well. This intensity is what's multiplied by the components of the pixel's color (or the components of the polygon's color, if no texture is applied) to produce the shading.
+Phong shading is a realistic shading algorithm for 3D scenes that calculates the color of each pixel by making the $intensity$ of light in each point in a surface proportional to the dot product between two unitary vectors: $\vec{L}$ and $\vec{N}$, as seen in *Fig. 1*. Vector $\vec{L}$ points to a point light source (or the direction of a directional light source), and $\vec{N}$ is the surface normal vector. Since both are unitary vectors, the result of the dot product is the cosine of the angle between both vectors. Since a cosine is a scalar, the $intensity$ is a scalar as well. This intensity is what's multiplied by the components of the pixel's color (or the components of the polygon's color, if no texture is applied) to produce the shading.
 
-The most impressive feature of Phong's shading, though, is that it also includes an inexpensive specular highlight calculation, producing spectacular glares whenever the surface reflects the light source towards the viewer, which renders the shading tremendously realistic. For this component of the shading one needs to calculate the dot product between the unitary normal vector of the surface and the unitary vector defined by the direction between the point of the surface being shaded and the position of the observer.
+The most impressive feature of Phong's shading, though, is that it also includes an **specular highlight** calculation, producing spectacular glares whenever the surface reflects the light source towards the viewer, which renders the shading tremendously realistic. For this component of the shading one needs to calculate the dot product between the unitary reflected light source vector $\vec{L_r}$ and the unitary vector $\vec{V}$ defined by the direction between the point of the surface being shaded and the position of the observer (see *Fig. 1*).
 
-As presented previously, this shading component, aka **Specular Highlight** component, is calculated through the equation:
+| ![](phong-specular-3d.svg)                                                                                       |
+| ---------------------------------------------------------------------------------------------------------------- |
+| <center><small>*Fig. 1: Vectors for calculating Phong shading <br>with a single light source* </small></center> |
+
+The Intensity $I$ for the Phong shading with $nl$ point light sources is calculated by the formula:
+
+$$
+I = k_aI_a +\sum_{i=1}^{nl} (k_dI_{id}\ (\vec{L_i}\cdot\vec{N})+k_sI_{is}\ (\vec{L_{ri}}\cdot\vec{V})^n)
+$$
+Where,
+- $k_a$​ is the ambient reflectivity coefficient.
+- $I_a$​ is the ambient light intensity.
+- $k_d$​ is the diffuse reflectivity coefficient.
+- $\vec{L_i}$​ is the normalized light direction vector pointing to light source $i$.
+- $\vec{N}$ is the normalized surface normal vector.
+- $I_{id}$ is the diffuse light intensity for light source $i$.
+- $k_s$​ is the specular reflectivity coefficient.
+- $\vec{L_{ri}}$ is the normalized reflection vector for light source $i$.
+- $\vec{V}$ is the normalized view direction vector.
+- $I_{is}$ is the specular light intensity for light source $i$.
+- $n$ is the shininess exponent, which controls the size and sharpness of the specular highlight (see *Fig. 2).
+
+The specular highlight is calculated by the term $k_sI_{is}\ (\vec{L_{ri}}\cdot\vec{V})^n$. Notwithstanding, since $\vec{L_{ri}}$ and $\vec{V}$ are normalized, $\vec{L_{ri}}\cdot\vec{V} = cos(\alpha_i)$. Considering a single light source, the intensity of the specular highlight can be simplified to just:
 
 ``` math
 intensity = cos^n(\alpha) 
@@ -69,7 +90,7 @@ For simplicity, let's forget for now where $\alpha$ comes from, assuming it is j
 ```
 <br>
 
-The curves are shown in *Fig. 1*. The left side was artificially produced by changing the sign for negative values of $\alpha$. The intention is to complete the shapes to give a better perception how the curves narrow when the exponent increases. The higher the exponent, the shiner is the surface supposed to be.
+The curves are shown in *Fig. 2*. The left side of each curve was artificially produced by changing the sign for negative values of $\alpha$. The intention is to complete the shapes to give a better perception how the curves narrow when the exponent increases. The higher the exponent, the shiner is the surface supposed to be.
 
 
 | ![](phong.svg)                                                                             |
