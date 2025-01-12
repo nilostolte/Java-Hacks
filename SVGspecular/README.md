@@ -44,7 +44,9 @@ Let's start with an $\alpha=0^\circ$, and then increment $\alpha$ with an angula
 
 Notice that since the control of the loop is totally independent from the incremented variables $\alpha$ and $x$, starting the loop with $i\ \text{=}\ 2$ will have the effect of only discarding the first and last stop colors $\vec{C_0}$ and $\vec{C_1}$. This is done because these are the input colors, and since they are obviously already known in advance they don't need to be calculated.
 
-Also of note, the names of the variables used in the pseudocode are given to enhance the algorithm comprehension and they don't correspond to the actual variable names in the actual [code](SVGspecular.java). Evidently, the algorithm above omits many details in order to simplify the logic, to show only the essential information, and to enhance comprehension. To further contrast the algorithm from the actual [code](SVGspecular.java), the notation doesn't follow any specific language syntax either, but just borrows some similar structures from most languages.
+Evidently, the algorithm above omits many details in order to simplify the logic, to show only the essential information, and to enhance comprehension. It only shows how the program calculates $\vec{C}$ and the offset $x$ for each stop color. To further contrast the algorithm from the actual [code](SVGspecular.java), the notation doesn't follow any specific language syntax either, but just borrows some similar structures from most languages.
+
+Also of note, the names of the variables used in the pseudocode are given to enhance the algorithm comprehension and they don't correspond to the actual variable names.
 
 ### Phong shading - Specular Highlight
 
