@@ -48,54 +48,62 @@ Evidently, the algorithm above omits many details in order to simplify the logic
 
 Also of note, the names of the variables used in the pseudocode are given to enhance the algorithm comprehension and they don't correspond to the actual variable names.
 
-### Phong shading - Specular Highlight
+### Phong shading
 
-Phong shading is a realistic shading algorithm for 3D scenes that calculates the color of each pixel by making the $intensity$ of light in each point in a surface proportional to the dot product between two unitary vectors: $\vec{L}$ and $\vec{N}$, as seen in *Fig. 1*. Vector $\vec{L}$ points to a point light source (or the direction of a directional light source), and $\vec{N}$ is the surface normal vector. Since both are unitary vectors, the result of the dot product is the cosine of the angle between both vectors. Since a cosine is a scalar, the $intensity$ is a scalar as well. This intensity is what's multiplied by the components of the pixel's color (or the components of the polygon's color, if no texture is applied) to produce the shading.
+Phong shading is a realistic shading algorithm for 3D scenes that calculates the color of each pixel by making the $intensity$ of light in each point in a surface proportional to the dot product between two unitary vectors: $\vec{L}$ and $\vec{N}$, as seen in $Fig. 1$. Vector $\vec{L}$ points to a point light source (or the direction of a directional light source), and $\vec{N}$ is the surface normal vector. Since both are unitary vectors, the result of the dot product is the cosine of the angle between both vectors. Since a cosine is a scalar, the $intensity$ is a scalar as well. This intensity is what's multiplied by the components of the pixel's color (or the components of the polygon's color, if no texture is applied) to produce the shading.
 
-The most impressive feature of Phong's shading, though, is that it also includes an **specular highlight** calculation, producing spectacular glares whenever the surface reflects the light source towards the viewer, which renders the shading tremendously realistic. For this component of the shading one needs to calculate the dot product between the unitary reflected light source vector $\vec{L_r}$ and the unitary vector $\vec{V}$ defined by the direction between the point of the surface being shaded and the position of the observer (see *Fig. 1*).
+The most impressive feature of Phong's shading, though, is that it also includes an **specular highlight** calculation, producing spectacular glares whenever the surface reflects the light source towards the viewer, which renders the shading tremendously realistic. For this component of the shading one needs to calculate the dot product between the unitary reflected light source vector $\vec{L_r}$ and the unitary vector $\vec{V}$ defined by the direction between the point of the surface being shaded and the position of the observer (see $Fig. 1$).
 
-| ![](phong-specular-3d.svg)                                                                                       |
-| ---------------------------------------------------------------------------------------------------------------- |
-| <center><small>*Fig. 1: Vectors for calculating Phong shading <br>with a single light source* </small></center> |
+<p align="center">
+    <img src="phong-specular-3d.svg">
+</p>
 
-The Intensity $I$ for the Phong shading with $nl$ point light sources is calculated by the formula:
-
-$$
-I = k_aI_a +\sum_{i=1}^{nl} (k_dI_{id}\ (\vec{L_i}\cdot\vec{N})+k_sI_{is}\ (\vec{L_{ri}}\cdot\vec{V})^n)
-$$
+Given the vectors and angles shown in $Fig. 1$, the Intensity $I$ for the Phong shading with a point light source is calculated by the formula:
+```math
+\begin{align}
+&I = k_aI_a + k_dI_{id}\ (\vec{L_i}\cdot\vec{N})+k_sI_{is}\ (\vec{L_{ri}}\cdot\vec{V})^n\\
+&I= k_aI_a + k_dI_{id}\ cos(\theta)+k_sI_{is}\ cos^n(\alpha)
+\end{align}\tag{1}
+```
 Where,
 - $k_a$​ is the ambient reflectivity coefficient.
 - $I_a$​ is the ambient light intensity.
 - $k_d$​ is the diffuse reflectivity coefficient.
-- $\vec{L_i}$​ is the normalized light direction vector pointing to light source $i$.
+- $\vec{L}$​  is the normalized light direction vector pointing to the light source.
 - $\vec{N}$ is the normalized surface normal vector.
-- $I_{id}$ is the diffuse light intensity for light source $i$.
+- $I_{d}$ is the diffuse light intensity for the light source.
 - $k_s$​ is the specular reflectivity coefficient.
-- $\vec{L_{ri}}$ is the normalized reflection vector for light source $i$.
+- $\vec{L_{r}}$ is the normalized reflection vector for the light source.
 - $\vec{V}$ is the normalized view direction vector.
-- $I_{is}$ is the specular light intensity for light source $i$.
-- $n$ is the shininess exponent, which controls the size and sharpness of the specular highlight (see *Fig. 2).
+- $I_{s}$ is the specular light intensity for the light source.
+- $n$ is the shininess exponent, which controls the size and sharpness of the specular highlight (see $Fig. 2$).
 
-The specular highlight is calculated by the term $k_sI_{is}\ (\vec{L_{ri}}\cdot\vec{V})^n$. Notwithstanding, since $\vec{L_{ri}}$ and $\vec{V}$ are normalized, $\vec{L_{ri}}\cdot\vec{V} = cos(\alpha_i)$. Considering a single light source, the intensity of the specular highlight can be simplified to just:
-
-``` math
-intensity = cos^n(\alpha) 
+Extending the Phong shading for $nl$ point light sources results in:
+```math
+I = k_aI_a +\sum_{i=1}^{nl} (k_dI_{id}\ (\vec{L_i}\cdot\vec{N})+k_sI_{is}\ (\vec{L_{ri}}\cdot\vec{V})^n)
 ```
-<br>
+Where,
+- $\vec{L_i}$​ is the normalized light direction vector pointing to light source $i$.
+- $I_{id}$ is the diffuse light intensity for light source $i$.
+- $\vec{L_{ri}}$ is the normalized reflection vector for light source $i$.
+- $I_{is}$ is the specular light intensity for light source $i$.
 
-For simplicity, let's forget for now where $\alpha$ comes from, assuming it is just an arbitrary angle ranging from $0^\circ$ to $90^\circ$. Let's now analyze the shape of the curve obtained when plotting a graph through the application of equation (1) to an infinite succession of angles by incrementing $\alpha$ with $\epsilon_\alpha$ such that:
+### Specular Highlight
 
-``` math
+As seen in equation $(1)$, the intensity of specular highlight for a single light source is calculated by the term $k_sI_{s}\ (\vec{L_{r}}\cdot\vec{V})^n$. Notwithstanding, since $\vec{L_{r}}$ and $\vec{V}$ are normalized, $\vec{L_{r}}\cdot\vec{V} = cos(\alpha)$. For simplicity, let's assume $k_s = I_{s}\approx 1$. Therefore:
+```math
+\begin{align}
+&intensity \approx cos^n(\alpha)
+\end{align}\tag{2}
+```
+Let's forget now where $\alpha$ comes from, assuming it is just an arbitrary angle ranging from $0^\circ$ to $90^\circ$. Let's now analyze the shape of the curve obtained when plotting a graph through the application of equation $(2)$ to an infinite succession of angles by incrementing $\alpha$ with $\epsilon_\alpha$ such that:
+```math
 \epsilon_\alpha = \lim_{\Delta\alpha\to 0}\Delta\alpha
 ```
-<br>
+The curves are shown in $Fig. 2$. The left side of each curve was artificially produced by changing the sign for negative values of $\alpha$. The intention is to complete the shapes to give a better perception how the curves narrow when the exponent increases. The higher the exponent, the shiner is the surface supposed to be.
 
-The curves are shown in *Fig. 2*. The left side of each curve was artificially produced by changing the sign for negative values of $\alpha$. The intention is to complete the shapes to give a better perception how the curves narrow when the exponent increases. The higher the exponent, the shiner is the surface supposed to be.
-
-
-| ![](phong.svg)                                                                             |
-| ------------------------------------------------------------------------------------------ |
-| <center><small>*Fig. 1: Curves for different exponents in* $cos^n(angle)$</small></center> |
-
+<p align="center">
+    <img src="phong.svg">
+</p>
 
 Notwithstanding, the effect of the specular highlight, is strikingly similar to the ones produced by radial gradients used in vector graphics. The particular interest of using this specific specular highlight calculation to calculate step colors in radial gradients is the smooth appearance of the intensity gradient that it produces. In this context, the gradient expected would be more realistic than the usually obtainable by simply making ad-hoc choices of step colors to be linear interpolated by the gradient mechanism of  the vector graphics engine being used.
