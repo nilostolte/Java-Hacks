@@ -55,7 +55,7 @@ Phong shading is a realistic shading algorithm for 3D scenes that calculates the
 The most impressive feature of Phong's shading, though, is that it also includes an **specular highlight** calculation, producing spectacular glares whenever the surface reflects the light source towards the viewer, which renders the shading tremendously realistic. For this component of the shading one needs to calculate the dot product between the unitary reflected light source vector $\vec{L_r}$ and the unitary vector $\vec{V}$ defined by the direction between the point of the surface being shaded and the position of the observer (see $Fig. 1$).
 
 <p align="center">
-    <img src="phong-specular-3d.svg">
+    <img src="phong-vectors-3d.svg">
 </p>
 
 Given the vectors and angles shown in $Fig. 1$, the Intensity $I$ for the Phong shading with a point light source is calculated by the formula:
