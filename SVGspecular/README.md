@@ -102,19 +102,15 @@ Let's forget now where $\alpha$ comes from, assuming it is just an arbitrary ang
 ```
 The curves are shown in $Fig. 2$. The left side of each curve was artificially produced by changing the sign for negative values of $\alpha$. The intention is to complete the shapes to give a better perception how the curves narrow when the exponent increases. The higher the exponent, the shiner is the surface supposed to be.
 
-<br>
 <p align="center">  
     <img src="phong.svg">
 </p>
-<br>
 
 bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
 bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
 
-<br>
 <p align="center">
     <img src="fig3.svg">
 </p>
-<br>
 
 Notwithstanding, the effect of the specular highlight, is strikingly similar to the ones produced by radial gradients used in vector graphics. The particular interest of using this specific specular highlight calculation to calculate step colors in radial gradients is the smooth appearance of the intensity gradient that it produces. In this context, the gradient expected would be more realistic than the usually obtainable by simply making ad-hoc choices of step colors to be linear interpolated by the gradient mechanism of  the vector graphics engine being used.
