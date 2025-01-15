@@ -7,53 +7,53 @@ public class SVGspecular {
 	static String name = "GRAD1"; 
 	static String color0 = "#FFFFFF"; 
 	static String color1 = "#2F3E51"; 
-    static int n = 10;
-    static int exp = 2;
-    static double a90 = Math.PI/2.;
-    static double inc = 1./((double) n);
-    static double inca = a90/((double) n);
-    static float c0[]= {0f, 0f, 0f};
-    static float c1[]= {0f, 0f, 0f};
-    static char color[] = {'#', 0, 0, 0, 0, 0, 0 };
+	static int n = 10;
+	static int exp = 2;
+	static double a90 = Math.PI/2.;
+	static double inc = 1./((double) n);
+	static double inca = a90/((double) n);
+	static float c0[]= {0f, 0f, 0f};
+	static float c1[]= {0f, 0f, 0f};
+	static char color[] = {'#', 0, 0, 0, 0, 0, 0 };
 	
 	public static void main(String[] args) {
-       int w = 512;
-       int h = 512;
-       float r = (w < h)? (((float) w)/2f) : (((float) h)/2f);
-       parseArgs(args);
-       System.out.println(xml);
-       System.out.println(dtd);
-       System.out.print(svg + "width=\"" + w + "\" height=\"" + h+ "\" ");
-       System.out.println("viewBox=\"0 0 " + w + " " + h + "\" " + "overflow=\"visible\">");
-       System.out.print("<radialGradient id=\"" + name + "\" ");
-       System.out.print("cx = \"" + (((float) w)/2f) + "\" cy=\"" + (((float) h)/2f) + "\" ");
-       System.out.println("r=\"" + r + "\" gradientUnits=\"userSpaceOnUse\">" );
-       calculate_steps();
-       System.out.println("</radialGradient>");
-       System.out.print("<path fill=\"url(#" + name + ")\" ");
-       System.out.println("d=\"M0,0L0,"+ h + "L" + w + "," + h + "L" + w + ",0z\"/>" );
-       System.out.println("</svg>");
-       
+	   int w = 512;
+	   int h = 512;
+	   float r = (w < h)? (((float) w)/2f) : (((float) h)/2f);
+	   parseArgs(args);
+	   System.out.println(xml);
+	   System.out.println(dtd);
+	   System.out.print(svg + "width=\"" + w + "\" height=\"" + h+ "\" ");
+	   System.out.println("viewBox=\"0 0 " + w + " " + h + "\" " + "overflow=\"visible\">");
+	   System.out.print("<radialGradient id=\"" + name + "\" ");
+	   System.out.print("cx = \"" + (((float) w)/2f) + "\" cy=\"" + (((float) h)/2f) + "\" ");
+	   System.out.println("r=\"" + r + "\" gradientUnits=\"userSpaceOnUse\">" );
+	   calculate_steps();
+	   System.out.println("</radialGradient>");
+	   System.out.print("<path fill=\"url(#" + name + ")\" ");
+	   System.out.println("d=\"M0,0L0,"+ h + "L" + w + "," + h + "L" + w + ",0z\"/>" );
+	   System.out.println("</svg>");
+	   
 	}
-    
-    private static void parseArgs(String[] args) {
-       int i;
-       if (args.length == 0) return;
-       // First argument is the number of subdivions (stops)
-       if (args[0].matches("[0-9]+")) {
-          i = Integer.parseInt(args[0]);
-          if (i > 2) {
-            n = i;
-            inca = a90/((double) i);
-            inc = 1./((double) i);
-          }
+	
+	private static void parseArgs(String[] args) {
+	   int i;
+	   if (args.length == 0) return;
+	   // First argument is the number of subdivions (stops)
+	   if (args[0].matches("[0-9]+")) {
+	   i = Integer.parseInt(args[0]);
+	   if (i > 2) {
+              n = i;
+              inca = a90/((double) i);
+              inc = 1./((double) i);
+           }
        }
        if (args.length == 1) return;
        // Second argument is the exponent, as n in cos^n
        if (args[1].matches("[0-9]+")) {
           i = Integer.parseInt(args[1]);
           if (i > 0) exp = i;
-       }       
+       }   
        if (args.length == 2) return;
     }
     
@@ -85,19 +85,19 @@ public class SVGspecular {
     }
     
     private static double intensity(double cos) {
-        double intensity = cos ; 
-        for (int i = 1; i < exp; i++) intensity *= cos;
-        return intensity;
+       double intensity = cos ; 
+       for (int i = 1; i < exp; i++) intensity *= cos;
+       return intensity;
     }
     
     private static String c2s(int r, int g, int b) {
-        color[1] = (char) ((r >> 4) + (((r >> 4) > 9) ? 55 : '0'));
-        color[2] = (char) ((r & 15) + (((r & 15) > 9) ? 55 : '0'));
-        color[3] = (char) ((g >> 4) + (((g >> 4) > 9) ? 55 : '0'));
-        color[4] = (char) ((g & 15) + (((g & 15) > 9) ? 55 : '0'));
-        color[5] = (char) ((b >> 4) + (((b >> 4) > 9) ? 55 : '0'));
-        color[6] = (char) ((b & 15) + (((b & 15) > 9) ? 55 : '0'));
-        return new String(color);
+       color[1] = (char) ((r >> 4) + (((r >> 4) > 9) ? 55 : '0'));
+       color[2] = (char) ((r & 15) + (((r & 15) > 9) ? 55 : '0'));
+       color[3] = (char) ((g >> 4) + (((g >> 4) > 9) ? 55 : '0'));
+       color[4] = (char) ((g & 15) + (((g & 15) > 9) ? 55 : '0'));
+       color[5] = (char) ((b >> 4) + (((b >> 4) > 9) ? 55 : '0'));
+       color[6] = (char) ((b & 15) + (((b & 15) > 9) ? 55 : '0'));
+       return new String(color);
     }
     private static int h2i(char c1, char c0) {
        int i0 = (c0 - '0');
