@@ -40,8 +40,8 @@ public class SVGspecular {
        if (args.length == 0) return;
        // First argument is the number of subdivions (stops)
        if (args[0].matches("[0-9]+")) {
-       i = Integer.parseInt(args[0]);
-       if (i > 2) {
+          i = Integer.parseInt(args[0]);
+          if (i > 2) {
               n = i;
               inca = a90/((double) i);
               inc = 1./((double) i);
@@ -59,8 +59,8 @@ public class SVGspecular {
     private static void calculate_steps() {
        int i;
        for (i = 0; i < 3; i++) {
-         c0[i] = (float) h2i(color0.charAt((i<<1)+1), color0.charAt((i<<1)+2));
-         c1[i] = (float) h2i(color1.charAt((i<<1)+1), color1.charAt((i<<1)+2));
+          c0[i] = (float) h2i(color0.charAt((i<<1)+1), color0.charAt((i<<1)+2));
+          c1[i] = (float) h2i(color1.charAt((i<<1)+1), color1.charAt((i<<1)+2));
        }
        System.out.println(
           "   <stop offset=\"0\"     style=\"stop-color:" + color0 + "\"/>"
