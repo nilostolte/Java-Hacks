@@ -25,7 +25,7 @@ Notice that the individual color components need to be processed independently. 
 
 One can now devise the complete algorithm. A gradient in **SVG** also needs the **offset** of each stop color from the center of the gradient (considered the gradient's origin). In the algorithm it's called $x$, a variable representing the offset with values ranging from $0$ to $1$. 
 
-Let's start with an $\alpha=0^\circ$, and then increment $\alpha$ with an angular step $\epsilon_\alpha$ at each iteration. Likewise, let's start the first stop color at $x = 0$, the center of the gradient, and increment $x$ with a linear step $\epsilon$ at each iteration. In other words, the pseudocode for the overall procedure described so far is shown below:
+Let's start with an $\alpha=0^\circ$, and then increment $\alpha$ with an angular step $\epsilon_\alpha$ at each iteration. Likewise, let's start the first stop color at $x = 0$, the center of the gradient, and increment $x$ with a linear step $\epsilon$ at each iteration. In other words, the pseudocode for the overall procedure described so far is shown in algorithm $(1)$.
 
 ```math
  \begin{aligned}
@@ -50,14 +50,14 @@ Also of note, the names of the variables used in the pseudocode are given to enh
 
 ### Phong shading - theoretical basis
 
-Phong shading is a realistic shading algorithm for 3D scenes that calculates the color of each pixel by making the $intensity$ of light in each point in a surface proportional to the dot product between two unitary vectors: $\vec{L}$ and $\vec{N}$, as seen in $Fig. 1$. Vector $\vec{L}$ points to a point light source (or the direction of a directional light source), and $\vec{N}$ is the surface normal vector. Since both are unitary vectors, the result of the dot product is the cosine of the angle between both vectors. Since a cosine is a scalar, the $intensity$ is a scalar as well. When the light sources are white this intensity is what's multiplied by the components of the surface's color to produce the shading.
+Phong shading is a realistic shading algorithm for 3D scenes that calculates the color of each pixel by making the $intensity$ of light in each point on a surface proportional to the dot product between two unitary vectors: $\vec{L}$ and $\vec{N}$, as seen in $Fig. 1$. Vector $\vec{L}$ points to a point light source (or the direction of a directional light source), and $\vec{N}$ is the surface normal vector. Since both are unitary vectors, the result of the dot product is the cosine of the angle between both vectors. Since a cosine is a scalar, the $intensity$ is a scalar as well. When the light sources are white this intensity is what's multiplied by the components of the surface's color to produce the shading.
 
-The most impressive feature of Phong's shading, though, is that it also includes a **specular highlight** calculation, producing spectacular glares whenever the surface reflects the light source towards the viewer, which renders the shading tremendously realistic. For this component of the shading we calculate the dot product between the unitary reflected light source vector $\vec{L_r}$ and the unitary vector $\vec{V}$ defined by the direction between the point of the surface being shaded and the position of the observer (see $Fig. 1$).
+The most impressive feature of Phong shading, though, is that it also includes a **specular highlight** calculation, producing spectacular glares whenever the surface reflects the light source towards the viewer, which renders the shading tremendously realistic. For this component of the shading we calculate the dot product between the unitary reflected light source vector $\vec{L_r}$ and the unitary vector $\vec{V}$ pointing to the position of the observer. All vectors in Phong shading are applied to the point on the surface being shaded (see $Fig. 1$).
 <p align="center">
     <img src="phong-vectors-3d.svg">
 </p>
 
-Given the vectors and angles shown in $Fig. 1$, the Intensity $I$ for Phong's shading with a point light source is calculated by the formula:
+Given the vectors and angles shown in $Fig. 1$, the calculation of intensity $I$ for Phong shading with a point light source is shown in formula $(2)$.
 ```math
 \begin{align}
 &I = k_aI_a + k_dI_{id}\ (\vec{L_i}\cdot\vec{N})+k_sI_{is}\ (\vec{L_{ri}}\cdot\vec{V})^n\\
@@ -75,9 +75,9 @@ Where,
 - $\vec{L_{r}}$ is the normalized reflection vector for the light source.
 - $\vec{V}$ is the normalized view direction vector.
 - $I_{s}$ is the specular light intensity for the light source.
-- $n$ is the shininess exponent, which controls the size and sharpness of the specular highlight (see $Fig. 2$).
+- $n$ is the shininess exponent, which controls the size and sharpness of the specular highlight (see $Fig. 2$ and $Fig. 3$).
 
-Extending the Phong shading for $nl$ point light sources results in:
+The extension of Phong shading for $nl$ point light sources is shown in equation $(3)$.
 ```math
 \begin{align}
 I = k_aI_a +\sum_{i=1}^{nl} (k_dI_{id}\ (\vec{L_i}\cdot\vec{N})+k_sI_{is}\ (\vec{L_{ri}}\cdot\vec{V})^n)
@@ -94,9 +94,9 @@ The complete model is summarized in $Fig. 2$.
     <img src="phong-shading-3d.svg">
 </p>
 
-### Specular Highlight
+### Specular highlight
 
-As seen in equation $(2)$, the specular highlight intensity for a single light source is calculated by the term $k_sI_{s}\ (\vec{L_{r}}\cdot\vec{V})^n.$ Notwithstanding, since $\vec{L_{r}}$ and $\vec{V}$ are normalized, $\vec{L_{r}}\cdot\vec{V} = cos(\alpha).$ For simplicity, let's now assume $k_s = I_{s}\approx 1.$ The specular highlight $intensity$ is then given by the following equation:
+As seen in formula $(2)$ and $Fig. 3$, the specular highlight $intensity$ for a single light source is calculated by the term $k_sI_{s}\ (\vec{L_{r}}\cdot\vec{V})^n.$ Notwithstanding, since $\vec{L_{r}}$ and $\vec{V}$ are normalized, $\vec{L_{r}}\cdot\vec{V} = cos(\alpha).$ For simplicity, let's now assume $k_s = I_{s}\approx 1.$ The specular highlight $intensity$ is then given by equation $(4)$.
 ```math
 \begin{align}
 &intensity \approx cos^n(\alpha)
@@ -116,11 +116,15 @@ A quite precise approximation of the curves is shown in $Fig. 3$. The left side 
 
 In vector graphics we observe that the effect of the specular highlight is strikingly similar to the ones produced by radial gradients. The particular interest of using Phong's specular highlight to calculate stop colors in radial gradients is the smooth appearance of the gradients intensities that it produces. In this context, the expected gradients would be more realistic than the ones usually obtainable by simply making ad-hoc choices of stop colors. To be more specific, the intensities are still linearly interpolated between each two calculated stop colors, but with a sufficient number of stop colors the transitions are imperceptible.
 
-In $Fig. 4$ we apply the algorithm $(1)$ to generate the stop colors of the gradients. Each gradient corresponds to a different exponent $n$ applied in algorithm $(1)$ as an user input. The exponents are the same and the gradients are presented in the same order as the corresponding highlight curves of $cos^n(\alpha)$ in $Fig. 3.$ The gradients were automatically generated by our [SVGspecular.java](SVGspecularCode.md) program, the resulting paths were copied and pasted in [phong-gradients.svg](phong-gradients.svg),  edited on Illustrator, saved back to phong-gradients.svg file, and used as is in $Fig. 4.$
+### Results
+
+In $Fig. 4$ we apply algorithm $(1)$ to generate the stop colors of the gradients. Each gradient corresponds to a different exponent $n$. The gradients are presented in the same order and with the same exponents as the corresponding highlight curves of $cos^n(\alpha)$ in $Fig. 3.$ 
 
 <p align="center">
     <img src="phong-gradients.svg">
 </p>
+
+We generated the gradients of $Fig. 4$, calling each time our [SVGspecular.java](SVGspecularCode.md) program with a different value of $n$ passed as an argument. After that we copied and pasted by hand each resulting gradient definition with its path into a [file](phong_gradients-org.svg), formally grouping them with \<g> and \</g>, and changing each id and url from GRAD1 (the default name for a gradient in the program) to GRAD2, GRAD3, GRAD4, GRAD5, GRAD6, and GRAD8, respectively. Then we added an appropriate translation to each group to position them according to the layout shown in the figure. Finally we edited the file on Illustrator, added the caption, saved back to the [final file](phong-gradients.svg), and used as is in $Fig. 4.$
 
 ### Applications and future uses
 
