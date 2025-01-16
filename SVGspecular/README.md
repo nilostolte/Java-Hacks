@@ -75,7 +75,7 @@ Where,
 - $\vec{L_{r}}$ is the normalized reflection vector for the light source.
 - $\vec{V}$ is the normalized view direction vector.
 - $I_{s}$ is the specular light intensity for the light source.
-- $n$ is the shininess exponent, which controls the size and sharpness of the specular highlight (see $Fig. 2$ and $Fig. 3$).
+- $n$ is the shininess exponent, which controls the size and sharpness of the specular highlight as shown in $Fig. 4$.
 
 The extension of Phong shading for $nl$ point light sources is shown in equation $(3)$.
 ```math
@@ -96,7 +96,7 @@ The complete model is summarized in $Fig. 2$.
 
 ### Specular highlight
 
-As seen in formula $(2)$ and $Fig. 3$, the specular highlight $intensity$ for a single light source is calculated by the term $k_sI_{s}\ (\vec{L_{r}}\cdot\vec{V})^n.$ Notwithstanding, since $\vec{L_{r}}$ and $\vec{V}$ are normalized, $\vec{L_{r}}\cdot\vec{V} = cos(\alpha).$ For simplicity, let's now assume $k_s = I_{s}\approx 1.$ The specular highlight $intensity$ is then given by equation $(4)$.
+As seen in formula $(2)$, the specular highlight $intensity$ for a single light source is calculated by the term $k_sI_{s}\ (\vec{L_{r}}\cdot\vec{V})^n.$ Notwithstanding, since $\vec{L_{r}}$ and $\vec{V}$ are normalized, $\vec{L_{r}}\cdot\vec{V} = cos(\alpha).$ For simplicity, let's now assume $k_s = I_{s}\approx 1.$ The specular highlight $intensity$ is then given by equation $(4)$.
 ```math
 \begin{align}
 &intensity \approx cos^n(\alpha)
