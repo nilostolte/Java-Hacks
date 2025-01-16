@@ -124,7 +124,7 @@ In $Fig. 4$ we apply algorithm $(1)$ to generate the stop colors of the gradient
     <img src="phong-gradients.svg">
 </p>
 
-We generated the gradients of $Fig. 4$, calling each time our [SVGspecular.java](SVGspecularCode.md) program with a different value of $n$ passed as an argument. After that we copied and pasted by hand each resulting gradient definition with its path into a [file](phong_gradients-org.svg), formally grouping them with \<g> and \</g>, and changing each id and url from GRAD1 (the default name for a gradient in the program) to GRAD2, GRAD3, GRAD4, GRAD5, GRAD6, and GRAD8, respectively. Then we added an appropriate translation to each group to position them according to the layout shown in the figure. Finally we edited the file on Illustrator, added the caption, saved back to the [final file](phong-gradients.svg), and used as is in $Fig. 4.$
+We generated the gradients of $Fig. 4$, calling each time our [SVGspecular.java](SVGspecularCode.md) program with a different value of $n$ passed as an argument. After that we copied and pasted by hand each resulting gradient definition with its path into a [file](phong_gradients-org.svg), each time grouping these two elements with \<g> and \</g> tags, and we changed each id and url from GRAD1 (the default name for a gradient in the program) to GRAD2, GRAD3, GRAD4, GRAD5, GRAD6, and GRAD8, respectively. Then we added an appropriate translation to each group to position them according to the layout shown in the figure. Finally we edited the file on Illustrator, added the caption, saved back to the [final file](phong-gradients.svg), and used as is in $Fig. 4.$
 
 ### Applications and future uses
 
