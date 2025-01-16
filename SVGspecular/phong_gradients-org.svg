@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" overflow="visible">
+<!-- GRAD2 -->
+<radialGradient id="GRAD2" cx = "256.0" cy="256.0" r="256.0" gradientUnits="userSpaceOnUse">
+   <stop offset="0"     style="stop-color:#FFFFFF"/>
+   <stop offset="0.050" style="stop-color:#FDFDFD"/>
+   <stop offset="0.100" style="stop-color:#F9FAFA"/>
+   <stop offset="0.150" style="stop-color:#F3F4F5"/>
+   <stop offset="0.200" style="stop-color:#EBECEE"/>
+   <stop offset="0.250" style="stop-color:#E0E2E5"/>
+   <stop offset="0.300" style="stop-color:#D4D7DB"/>
+   <stop offset="0.350" style="stop-color:#C6CACF"/>
+   <stop offset="0.400" style="stop-color:#B7BCC2"/>
+   <stop offset="0.450" style="stop-color:#A7ADB5"/>
+   <stop offset="0.500" style="stop-color:#979EA8"/>
+   <stop offset="0.550" style="stop-color:#868F9A"/>
+   <stop offset="0.600" style="stop-color:#76808D"/>
+   <stop offset="0.650" style="stop-color:#677280"/>
+   <stop offset="0.700" style="stop-color:#596574"/>
+   <stop offset="0.750" style="stop-color:#4D5A6A"/>
+   <stop offset="0.800" style="stop-color:#425061"/>
+   <stop offset="0.850" style="stop-color:#3A485A"/>
+   <stop offset="0.900" style="stop-color:#344255"/>
+   <stop offset="1"     style="stop-color:#2F3E51"/>
+</radialGradient>
+<path fill="url(#GRAD2)" d="M0,0L0,512L512,512L512,0z"/>
+<g transform="translate(512, 0)">
+<!-- GRAD3 -->
+<radialGradient id="GRAD3" cx = "256.0" cy="256.0" r="256.0" gradientUnits="userSpaceOnUse">
+   <stop offset="0"     style="stop-color:#FFFFFF"/>
+   <stop offset="0.050" style="stop-color:#FDFDFD"/>
+   <stop offset="0.100" style="stop-color:#F7F7F8"/>
+   <stop offset="0.150" style="stop-color:#EEEFF0"/>
+   <stop offset="0.200" style="stop-color:#E1E4E6"/>
+   <stop offset="0.250" style="stop-color:#D3D6DA"/>
+   <stop offset="0.300" style="stop-color:#C2C6CC"/>
+   <stop offset="0.350" style="stop-color:#AFB5BC"/>
+   <stop offset="0.400" style="stop-color:#9DA4AD"/>
+   <stop offset="0.450" style="stop-color:#8A929D"/>
+   <stop offset="0.500" style="stop-color:#78828E"/>
+   <stop offset="0.550" style="stop-color:#677280"/>
+   <stop offset="0.600" style="stop-color:#596574"/>
+   <stop offset="0.650" style="stop-color:#4C5969"/>
+   <stop offset="0.700" style="stop-color:#425061"/>
+   <stop offset="0.750" style="stop-color:#3A485A"/>
+   <stop offset="0.800" style="stop-color:#354356"/>
+   <stop offset="0.850" style="stop-color:#314053"/>
+   <stop offset="0.900" style="stop-color:#2F3E51"/>
+   <stop offset="1"     style="stop-color:#2F3E51"/>
+</radialGradient>
+<path fill="url(#GRAD3)" d="M0,0L0,512L512,512L512,0z"/>
+</g>
+<g transform="translate(0, 512)">
+<!-- GRAD4 -->
+<radialGradient id="GRAD4" cx = "256.0" cy="256.0" r="256.0" gradientUnits="userSpaceOnUse">
+   <stop offset="0"     style="stop-color:#FFFFFF"/>
+   <stop offset="0.050" style="stop-color:#FCFCFC"/>
+   <stop offset="0.100" style="stop-color:#F4F5F6"/>
+   <stop offset="0.150" style="stop-color:#E8EAEC"/>
+   <stop offset="0.200" style="stop-color:#D9DBDF"/>
+   <stop offset="0.250" style="stop-color:#C6CACF"/>
+   <stop offset="0.300" style="stop-color:#B2B7BE"/>
+   <stop offset="0.350" style="stop-color:#9CA4AC"/>
+   <stop offset="0.400" style="stop-color:#88909B"/>
+   <stop offset="0.450" style="stop-color:#747E8B"/>
+   <stop offset="0.500" style="stop-color:#636E7C"/>
+   <stop offset="0.550" style="stop-color:#54606F"/>
+   <stop offset="0.600" style="stop-color:#475565"/>
+   <stop offset="0.650" style="stop-color:#3E4C5D"/>
+   <stop offset="0.700" style="stop-color:#374658"/>
+   <stop offset="0.750" style="stop-color:#334254"/>
+   <stop offset="0.800" style="stop-color:#303F52"/>
+   <stop offset="0.850" style="stop-color:#2F3E51"/>
+   <stop offset="0.900" style="stop-color:#2F3E51"/>
+   <stop offset="1"     style="stop-color:#2F3E51"/>
+</radialGradient>
+<path fill="url(#GRAD4)" d="M0,0L0,512L512,512L512,0z"/>
+</g>
+<g transform="translate(512, 512)">
+<!-- GRAD5 -->
+<radialGradient id="GRAD5" cx = "256.0" cy="256.0" r="256.0" gradientUnits="userSpaceOnUse">
+   <stop offset="0"     style="stop-color:#FFFFFF"/>
+   <stop offset="0.050" style="stop-color:#FBFCFC"/>
+   <stop offset="0.100" style="stop-color:#F2F3F4"/>
+   <stop offset="0.150" style="stop-color:#E3E5E8"/>
+   <stop offset="0.200" style="stop-color:#D0D4D8"/>
+   <stop offset="0.250" style="stop-color:#BBBFC6"/>
+   <stop offset="0.300" style="stop-color:#A3AAB2"/>
+   <stop offset="0.350" style="stop-color:#8C949F"/>
+   <stop offset="0.400" style="stop-color:#77808D"/>
+   <stop offset="0.450" style="stop-color:#636F7D"/>
+   <stop offset="0.500" style="stop-color:#53606F"/>
+   <stop offset="0.550" style="stop-color:#475465"/>
+   <stop offset="0.600" style="stop-color:#3D4B5D"/>
+   <stop offset="0.650" style="stop-color:#374557"/>
+   <stop offset="0.700" style="stop-color:#334154"/>
+   <stop offset="0.750" style="stop-color:#303F52"/>
+   <stop offset="0.800" style="stop-color:#2F3E51"/>
+   <stop offset="0.850" style="stop-color:#2F3E51"/>
+   <stop offset="0.900" style="stop-color:#2F3E51"/>
+   <stop offset="1"     style="stop-color:#2F3E51"/>
+</radialGradient>
+<path fill="url(#GRAD5)" d="M0,0L0,512L512,512L512,0z"/>
+</g>
+<g transform="translate(0, 1024)">
+<!-- GRAD6 -->
+<radialGradient id="GRAD6" cx = "256.0" cy="256.0" r="256.0" gradientUnits="userSpaceOnUse">
+   <stop offset="0"     style="stop-color:#FFFFFF"/>
+   <stop offset="0.050" style="stop-color:#FBFBFB"/>
+   <stop offset="0.100" style="stop-color:#F0F1F2"/>
+   <stop offset="0.150" style="stop-color:#DEE1E4"/>
+   <stop offset="0.200" style="stop-color:#C8CCD1"/>
+   <stop offset="0.250" style="stop-color:#B0B6BD"/>
+   <stop offset="0.300" style="stop-color:#979EA8"/>
+   <stop offset="0.350" style="stop-color:#7E8893"/>
+   <stop offset="0.400" style="stop-color:#697481"/>
+   <stop offset="0.450" style="stop-color:#576372"/>
+   <stop offset="0.500" style="stop-color:#495666"/>
+   <stop offset="0.550" style="stop-color:#3E4C5E"/>
+   <stop offset="0.600" style="stop-color:#374558"/>
+   <stop offset="0.650" style="stop-color:#334154"/>
+   <stop offset="0.700" style="stop-color:#303F52"/>
+   <stop offset="0.750" style="stop-color:#2F3E51"/>
+   <stop offset="0.800" style="stop-color:#2F3E51"/>
+   <stop offset="0.850" style="stop-color:#2F3E51"/>
+   <stop offset="0.900" style="stop-color:#2F3E51"/>
+   <stop offset="1"     style="stop-color:#2F3E51"/>
+</radialGradient>
+<path fill="url(#GRAD6)" d="M0,0L0,512L512,512L512,0z"/>
+</g>
+<g transform="translate(512, 1024)">
+<!-- GRAD8 -->
+<radialGradient id="GRAD8" cx = "256.0" cy="256.0" r="256.0" gradientUnits="userSpaceOnUse">
+   <stop offset="0"     style="stop-color:#FFFFFF"/>
+   <stop offset="0.050" style="stop-color:#F9FAFA"/>
+   <stop offset="0.100" style="stop-color:#EBECEE"/>
+   <stop offset="0.150" style="stop-color:#D5D8DC"/>
+   <stop offset="0.200" style="stop-color:#BABFC5"/>
+   <stop offset="0.250" style="stop-color:#9DA4AD"/>
+   <stop offset="0.300" style="stop-color:#818A96"/>
+   <stop offset="0.350" style="stop-color:#697381"/>
+   <stop offset="0.400" style="stop-color:#556170"/>
+   <stop offset="0.450" style="stop-color:#465364"/>
+   <stop offset="0.500" style="stop-color:#3C4A5B"/>
+   <stop offset="0.550" style="stop-color:#354456"/>
+   <stop offset="0.600" style="stop-color:#314053"/>
+   <stop offset="0.650" style="stop-color:#303F51"/>
+   <stop offset="0.700" style="stop-color:#2F3E51"/>
+   <stop offset="0.750" style="stop-color:#2F3E51"/>
+   <stop offset="0.800" style="stop-color:#2F3E51"/>
+   <stop offset="0.850" style="stop-color:#2F3E51"/>
+   <stop offset="0.900" style="stop-color:#2F3E51"/>
+   <stop offset="1"     style="stop-color:#2F3E51"/>
+</radialGradient>
+<path fill="url(#GRAD8)" d="M0,0L0,512L512,512L512,0z"/>
+</g>
+</svg>
