@@ -52,7 +52,7 @@ CSS classes separated by commas sharing the same attribute (color or another att
 When an error is detected while using the `TreeMap`, the program says which class was not found and dumps all 
 the keys of the tree for debugging purposes.
 
-## SVGtextInkscape - Mini parser for Texts and Automatization of CLI Debbuging
+## SVGinktxt - Mini parser for Texts and Automatization of CLI Debbuging
 
 The actual class is called "[SVGinktxt](SVGtextInkscape/SVGinktxt.java)." This program implements a small
 parser for texts in SVG coming from Inkscape. It erases the matrix that appears at each text line, by just
