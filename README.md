@@ -69,7 +69,7 @@ x coordinates, one for each glyph in the text item. This is generally used to ju
 In certain versions of Illustrator text justifications don't always come out well. For some reason when the
 file is converted to SVG a line that was perfectly well justified on-screen can sometimes be divided at its last 
 word, with a hyphen at the end of the line and the rest of the word appearing on the next line. This messes up 
-with the intended formatting where the words where chosen to fit well in the paragraph. Something that looked
+with the intended formatting where the words were chosen to fit well in the paragraph. Something that looked
 beautiful and harmonious, becomes ugly and awkward.
 
 The easy solution for this problem is to convert the whole file on Illustrator to PDF, import the PDF file into 
