@@ -60,7 +60,7 @@ parser for texts in SVG coming from Inkscape. It erases the matrix that appears 
 applying the matrix to the coordinates of the first item in the line. For simplification and because the y
 coordinate first item in these cases is always negative, I just search for the negative value. Since Inkscape
 uses an entire matrix only to translate a negative y to a positive y, all I have to do is to extract the y 
-translation from the matrix, make the matrix disapper, and add that value to the negative y in the first 
+translation from the matrix, make the matrix disappear, and add that value to the negative y in the first 
 element of the line.
 
 Notice that doing that, the matrix becomes an identity matrix which is what allows us to delete it.
