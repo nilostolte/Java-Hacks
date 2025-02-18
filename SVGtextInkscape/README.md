@@ -40,8 +40,6 @@ The parser was implemented using a new concept I'm experimenting with. It's a ge
 
 I use only early return functions to parse particular elements. Inside these functions, I employ loops where "if" commands handle specific situations, and "continue" commands allow me to exit these "if" blocks and continue the loop, thus avoiding "else" clauses while mimicking the logic of early returns within loops.
 
-Notably, it's common knowledge that "if" commands and "else" clauses both generate "goto" instructions at the assembly level. Since "else" clauses are actually disguised "go to" commands and "continue" commands are "go to" commands that are practically explicit, there is no intrinsic disadvantages in using "continue" commands as one could assume. However, the structure of the resulting parser is extremely different.
-
 It's widely recognized that at the assembly level, both "if" statements and "else" clauses are implemented
 with "goto" instructions. Essentially, "else" clauses are just less obvious forms of "goto", while "continue"
 commands are explicit "goto"s that jump to the next iteration of a loop. There's no inherent drawback to using
@@ -49,7 +47,9 @@ commands are explicit "goto"s that jump to the next iteration of a loop. There's
 can result in code that's more linear or less nested, potentially enhancing readability or simplifying
 maintenance.
 
-The code becomes more readable and begins to resemble a BNF grammar, which is typically used to define languages and parsers. This similarity suggests that the code not only becomes easier to understand and write but might also execute faster due to its structure.
+The code becomes more readable and begins to resemble a BNF grammar, which is typically used to define
+languages and parsers. This similarity suggests that the code not only becomes easier to understand and
+write but might also execute faster due to its structure.
 
 
 
