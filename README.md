@@ -49,7 +49,7 @@ the current pen point, which is also a control point in SVG.
 
 ### Utility to reverse paths using Vectorizer path representation
 
-The generic utility [reverse.java](SVGReverse/reverse.java) reverses a path given in Vectorizer's format passed as a string (with 
+The generic utility [reverse.java](SVGPathBoundingBox/reverse.java) reverses a path given in Vectorizer's format passed as a string (with 
 explicit double quotes) to the program. Consider the following example:
 
 ```
